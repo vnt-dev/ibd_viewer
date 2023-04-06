@@ -15,9 +15,9 @@ use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
 #[command(
-    author = "Lu Beilin",
-    version,
-    about = "一个.ibd文件解析工具，帮助学习InnoDB"
+author = "Lu Beilin",
+version,
+about = "一个.ibd文件解析工具，帮助学习InnoDB"
 )]
 pub struct BaseArgs {
     /// .ibd文件路径
@@ -35,6 +35,8 @@ enum Commands {
         /// 页号
         page_num: u32,
     },
+    /// 查看b+树根节点
+    Root,
 }
 
 fn cmd() {
@@ -52,6 +54,12 @@ fn cmd() {
         Commands::Page { page_num } => {
             let page = tablespace.page(page_num).unwrap();
             println!("{}", page);
+        }
+        Commands::Root => {
+            let root = tablespace.index_roots();
+            for (name, num) in root {
+                println!("key_name:{},root_page_num:{}", name, num)
+            }
         }
     }
 }
