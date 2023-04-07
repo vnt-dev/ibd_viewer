@@ -142,14 +142,11 @@ impl<B: AsRef<[u8]>> fmt::Display for Row<B> {
         for index in 0..self.col_info().len() {
             let (data_type, col, ptr) = self.col_type(index);
             if data_type.is_str() {
-                if col.is_empty() {
-                    write!(f, " []")?;
-                } else {
-                    write!(f, " ")?;
-                    for x in col {
-                        write!(f, "{:02x} ", x)?;
-                    }
+                write!(f, " [")?;
+                for x in col {
+                    write!(f, " {:02x}", x)?;
                 }
+                write!(f, "]")?;
             } else {
                 write!(f, "{} ", hex::encode(col))?;
             }
