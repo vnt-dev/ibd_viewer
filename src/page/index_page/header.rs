@@ -1,5 +1,6 @@
 use std::fmt;
 use std::fmt::Formatter;
+use console::style;
 
 use crate::page::index_page::direction::Direction;
 use crate::page::index_page::format_flag::RecordFormat;
@@ -92,7 +93,7 @@ impl<B: AsRef<[u8]>> IndexHeader<B> {
 
 impl<B: AsRef<[u8]>> fmt::Display for IndexHeader<B> {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        writeln!(f, "IndexPageHeader")?;
+        writeln!(f, "{}",style("IndexPageHeader").green())?;
         writeln!(
             f,
             " slots:{} ({})",
@@ -236,7 +237,7 @@ impl<B: AsRef<[u8]>> FSegHeader<B> {
 
 impl<B: AsRef<[u8]>> fmt::Display for FSegHeader<B> {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        writeln!(f, "FSegHeader")?;
+        writeln!(f, "{}",style("FSegHeader").green())?;
         writeln!(
             f,
             " leaf_space_id:{} ({})",

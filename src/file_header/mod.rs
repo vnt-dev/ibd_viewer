@@ -1,5 +1,6 @@
 use std::fmt;
 use std::fmt::Formatter;
+use console::style;
 
 use crate::file_header::page_type::PageType;
 
@@ -70,7 +71,7 @@ impl<B: AsRef<[u8]>> FileHeader<B> {
 
 impl<B: AsRef<[u8]>> fmt::Display for FileHeader<B> {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
-        writeln!(f, "FileHeader")?;
+        writeln!(f, "{}",style("FileHeader").green())?;
         writeln!(
             f,
             " check_sum:{} ({})",

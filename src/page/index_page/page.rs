@@ -8,6 +8,7 @@ use crate::tablespace::table::{Index, TableInfo};
 use bytes::{Buf, Bytes};
 use std::fmt;
 use std::fmt::{Display, Formatter};
+use console::style;
 
 #[derive(Debug)]
 pub struct IndexPage {
@@ -25,20 +26,20 @@ impl Display for IndexPage {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         write!(f, "{}", self.index_header)?;
         write!(f, "{}", self.f_seg_header)?;
-        writeln!(f, "row:")?;
+        writeln!(f, "{}",style("row:").green())?;
         writeln!(f, "     var&null / not_used / delete_mask / min_rec_mask / n_owned / heap_no / rec_type / next / value")?;
         writeln!(f, " infimum : {}", self.infimum)?;
         writeln!(f, " supremum: {}", self.supremum)?;
-        writeln!(f, " user_records:")?;
+        writeln!(f, "{}",style(" user_records:").green())?;
 
         write!(f, "var&null / not_used / delete_mask / min_rec_mask / n_owned / heap_no / rec_type / next /")?;
         if self.index_header.level() == 0 {
             for col in &self.index.elements {
-                write!(f, " {} /", col.name)?;
+                write!(f, " {} /", style(&col.name).yellow())?;
             }
         } else {
             for col in &self.index.indexes {
-                write!(f, " {} /", col.name)?;
+                write!(f, " {} /", style(&col.name).yellow())?;
             }
         }
         writeln!(f, "")?;

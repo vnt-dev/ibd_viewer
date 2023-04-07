@@ -1,4 +1,5 @@
 use std::fmt;
+use console::style;
 
 pub struct FileTrailer<B> {
     buffer: B,
@@ -28,7 +29,7 @@ impl<B: AsRef<[u8]>> FileTrailer<B> {
 }
 impl<B: AsRef<[u8]>> fmt::Display for FileTrailer<B> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        writeln!(f, "FileTrailer")?;
+        writeln!(f, "{}",style("FileTrailer").green())?;
         writeln!(
             f,
             " check_sum:{} ({})",
