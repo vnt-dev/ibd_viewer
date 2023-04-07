@@ -1,5 +1,5 @@
 # ibd_viewer
-ibd文件解析器
+mysql innodb .ibd文件解析器
 
 ### 示例
 #### 查看所有页的页号和类型
