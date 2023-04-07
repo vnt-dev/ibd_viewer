@@ -21,6 +21,11 @@ CREATE TABLE `test_index_1` (
 #### 查看具体页的数据,可以看到行记录
 ![图片](https://user-images.githubusercontent.com/49143209/230541089-fbbbc614-a846-4807-87f7-3536c3336880.png)
 
+### 编译
+
+1. 安装rust环境 https://www.rust-lang.org/zh-CN/tools/install
+2. 到项目目录下执行 cargo build
+
 ### 支持
 
 1. MySQL 8.0
